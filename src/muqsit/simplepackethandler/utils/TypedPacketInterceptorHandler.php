@@ -38,7 +38,7 @@ final class TypedPacketInterceptorHandler implements PacketInterceptorHandler{
 	private function matches(DataPacket $packet) : bool{
 		foreach($this->type_groups as $group){
 			foreach($group as $type){
-				if(!is_a($packet, $type)){
+				if(!Utils::matchesClass($packet, $type)){
 					continue 2;
 				}
 			}

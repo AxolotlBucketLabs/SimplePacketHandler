@@ -22,7 +22,9 @@ use function count;
 use function get_class;
 use function implode;
 use function in_array;
-use function is_a;
+use function class_implements;
+use function class_parents;
+use function is_object;
 
 final class Utils{
 
@@ -69,11 +71,22 @@ final class Utils{
 
 	private static function isCompatibleParameterType(string $type, string $expected) : bool{
 		return match($expected){
-			ServerboundPacket::class => is_a($type, ServerboundPacket::class, true),
-			ClientboundPacket::class => is_a($type, ClientboundPacket::class, true),
-			NetworkSession::class => is_a($type, NetworkSession::class, true),
+			ServerboundPacket::class => self::matchesClass($type, ServerboundPacket::class),
+			ClientboundPacket::class => self::matchesClass($type, ClientboundPacket::class),
+			NetworkSession::class => self::matchesClass($type, NetworkSession::class),
 			default => $type === $expected
 		};
+	}
+
+	/**
+	 * Checks an object or class name without passing a dynamic class string to is_a().
+	 * This keeps packet matching safe for namespace-shaded virions.
+	 */
+	public static function matchesClass(object|string $value, string $expected) : bool{
+		$class = is_object($value) ? get_class($value) : $value;
+		return $class === $expected
+			|| in_array($expected, class_parents($class) ?: [], true)
+			|| in_array($expected, class_implements($class) ?: [], true);
 	}
 
 	/**
@@ -128,7 +141,7 @@ final class Utils{
 					continue;
 				}
 				foreach($group as $validate){
-					if(!is_a($packet, $validate)){
+					if(!self::matchesClass($packet, $validate)){
 						continue 2;
 					}
 				}
