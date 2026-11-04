@@ -15,7 +15,6 @@ use pocketmine\utils\Utils as PocketMineUtils;
 use ReflectionFunction;
 use ReflectionIntersectionType;
 use ReflectionNamedType;
-use ReflectionProperty;
 use ReflectionType;
 use ReflectionUnionType;
 use function count;
@@ -132,8 +131,7 @@ final class Utils{
 	 */
 	public static function flattenPacketPidsFromGroups(PacketPool $pool, array $groups) : array{
 		$network_ids = [];
-		$packets = (new ReflectionProperty($pool, "pool"))->getValue($pool);
-		$packets instanceof \SplFixedArray || throw new InvalidArgumentException("Packet pool must expose a SplFixedArray-backed packet registry");
+		$packets = $pool->getAll();
 		foreach($groups as $group){
 			$found = 0;
 			foreach($packets as $pid => $packet){
