@@ -131,10 +131,13 @@ final class Utils{
 	 */
 	public static function flattenPacketPidsFromGroups(PacketPool $pool, array $groups) : array{
 		$network_ids = [];
-		$packets = $pool->getAll();
 		foreach($groups as $group){
 			$found = 0;
-			foreach($packets as $pid => $packet){
+			for($pid = 0; $pid < 512; ++$pid){
+				$packet = $pool->getPacketById($pid);
+				if($packet === null){
+					continue;
+				}
 				if(!$packet instanceof DataPacket){
 					continue;
 				}
@@ -150,7 +153,9 @@ final class Utils{
 			}
 			$found > 0 || throw new InvalidArgumentException("No packets match criteria " . implode("&", $group));
 		}
-		/** @var non-empty-list<int> $network_ids */
+		if($network_ids === []){
+			throw new InvalidArgumentException("No packet IDs matched the requested criteria");
+		}
 		return $network_ids;
 	}
 }
