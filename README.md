@@ -7,21 +7,35 @@ A PocketMine-MP library/virion that provides a simple API to handle data packets
 [![License](https://img.shields.io/github/license/AxolotlBucketLabs/SimplePacketHandler)](https://github.com/AxolotlBucketLabs/SimplePacketHandler/blob/pm5/LICENSE)
 [![Discord](https://img.shields.io/discord/986553214889517088?label=Discord&logo=discord&logoColor=white&color=5865F2)](https://discord.gg/j2X83ujT6c)
 
-
 ## Compatibility
 
-The virion manifest declares Axolotl-PM API `5.36.0` as the minimum requirement. The Composer test environment pins Axolotl-PM `5.49.1`; see the [GitHub Actions runs](https://github.com/AxolotlBucketLabs/SimplePacketHandler/actions/workflows/test.yml) for exact results.
+The virion manifest requires Axolotl-PM API `5.36.0` or newer. The Composer test environment pins Axolotl-PM `5.49.1`. See the [test workflow](https://github.com/AxolotlBucketLabs/SimplePacketHandler/actions/workflows/test.yml) for the exact checks.
 
-## API Documentation
-### Packet Monitor
-Monitor data packets - use this if you aren't modifying the outcome of the event.<br>
-Packet monitor registers DataPacket(Receive/Send)Event(s) at `MONITOR` priority.
+## Installation
 
-Use case:
-- Dumping extra data from packets
-- Debugging whether a packet was sent / received
+Use SimplePacketHandler as a virion in the consuming plugin. Put this repository in `virions/SimplePacketHandler/` and declare the manifest name in the consumer's `devtools.yml`:
+
+```yaml
+virions:
+  - name: PacketHandler
+    version: ^0.1.10
+```
+
+DevTools shares the source during development and injects the virion into the consumer PHAR during the build. Do not install this virion as a standalone plugin.
+
+## API
+
+### Packet monitor
+Monitor data packets when you need to inspect them without changing the event outcome. The packet monitor registers receive and send handlers at `MONITOR` priority.
+
+Use cases include the following:
+
+- Dump extra data from packets.
+- Debug whether a packet was sent or received.
 
 ```php
+use muqsit\simplepackethandler\SimplePacketHandler;
+
 /** @var Plugin $plugin */
 $packet_monitor = SimplePacketHandler::createMonitor($plugin);
 
@@ -70,12 +84,13 @@ public function onDataPacketSend(DataPacketSendEvent $event) : void{
 }
 ```
 
-### Packet Interceptor
-Handle data packets - DataPacket(Receive/Send)Event(s) are registered at < `MONITOR` priority.
+### Packet interceptor
+Handle data packets when you need to modify or cancel them. The default interceptor priority is `NORMAL`.
 
-Use case:
-- Blocking pocketmine from handling specific data packets
-- Modifying data packets before pocketmine handles them
+Use cases include the following:
+
+- Block PocketMine-MP from handling specific data packets.
+- Modify data packets before PocketMine-MP handles them.
 
 ```php
 /** @var Plugin $plugin */
