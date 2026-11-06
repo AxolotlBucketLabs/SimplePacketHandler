@@ -2,15 +2,15 @@
 
 A PocketMine-MP library/virion that provides a simple API to handle data packets per network session.
 
-[![CI](https://github.com/NhanAZ-Libraries/SimplePacketHandler/actions/workflows/test.yml/badge.svg)](https://github.com/NhanAZ-Libraries/SimplePacketHandler/actions/workflows/test.yml)
-[![Latest release](https://img.shields.io/github/v/release/NhanAZ-Libraries/SimplePacketHandler)](https://github.com/NhanAZ-Libraries/SimplePacketHandler/releases/latest)
-[![License](https://img.shields.io/github/license/NhanAZ-Libraries/SimplePacketHandler)](https://github.com/NhanAZ-Libraries/SimplePacketHandler/blob/pm5/LICENSE)
+[![CI](https://github.com/AxolotlBucketLabs/SimplePacketHandler/actions/workflows/test.yml/badge.svg)](https://github.com/AxolotlBucketLabs/SimplePacketHandler/actions/workflows/test.yml)
+[![Latest release](https://img.shields.io/github/v/release/AxolotlBucketLabs/SimplePacketHandler)](https://github.com/AxolotlBucketLabs/SimplePacketHandler/releases/latest)
+[![License](https://img.shields.io/github/license/AxolotlBucketLabs/SimplePacketHandler)](https://github.com/AxolotlBucketLabs/SimplePacketHandler/blob/pm5/LICENSE)
 [![Discord](https://img.shields.io/discord/986553214889517088?label=Discord&logo=discord&logoColor=white&color=5865F2)](https://discord.gg/j2X83ujT6c)
 
 
 ## Compatibility
 
-The virion manifest declares Axolotl-PM API `5.36.0` as the minimum requirement. The Composer test environment pins Axolotl-PM `5.49.1`; see the [GitHub Actions runs](https://github.com/NhanAZ-Libraries/SimplePacketHandler/actions/workflows/test.yml) for exact results.
+The virion manifest declares Axolotl-PM API `5.36.0` as the minimum requirement. The Composer test environment pins Axolotl-PM `5.49.1`; see the [GitHub Actions runs](https://github.com/AxolotlBucketLabs/SimplePacketHandler/actions/workflows/test.yml) for exact results.
 
 ## API Documentation
 ### Packet Monitor
