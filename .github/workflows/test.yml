@@ -3,10 +3,10 @@ name: Test and analyze packet handler library
 on:
   push:
     branches:
-      - pm5
+      - main
   pull_request:
     branches:
-      - pm5
+      - main
   workflow_dispatch:
 
 permissions:
