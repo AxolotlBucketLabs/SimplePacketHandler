@@ -5,7 +5,7 @@ A PocketMine-MP library/virion that provides a simple API to handle data packets
 [![CI](https://github.com/AxolotlBucketLabs/SimplePacketHandler/actions/workflows/test.yml/badge.svg)](https://github.com/AxolotlBucketLabs/SimplePacketHandler/actions/workflows/test.yml)
 [![Latest release](https://img.shields.io/github/v/release/AxolotlBucketLabs/SimplePacketHandler)](https://github.com/AxolotlBucketLabs/SimplePacketHandler/releases/latest)
 [![License](https://img.shields.io/github/license/AxolotlBucketLabs/SimplePacketHandler)](https://github.com/AxolotlBucketLabs/SimplePacketHandler/blob/pm5/LICENSE)
-[![Discord](https://img.shields.io/discord/986553214889517088?label=Discord&logo=discord&logoColor=white&color=5865F2)](https://discord.gg/j2X83ujT6c)
+[![Discord](https://img.shields.io/discord/1568295845374206052?label=Discord&logo=discord&logoColor=white&color=5865F2)](https://discord.gg/Pk4FrNvHnM)
 
 ## Compatibility
 
